@@ -40,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 String getPassword = password.getText().toString();
                 firebaseAuth.createUserWithEmailAndPassword(getEmail, getPassword)
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            String getnEmail = getEmail;
+                            String getnPassword = getPassword;
+
+                            //public String getGetnEmail() {return getnEmail;}
+                            //public String getGetnPassword() {return getnPassword;}
+                            //public void setGetnEmail(String getnEmail) {this.getnEmail = getnEmail;}
+                            //public void setGetnPassword(String getnPassword) {this.getnPassword = getnPassword;}
+
+                            isEmptyEmailAndPass();
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(MainActivity.this, "User account created!", Toast.LENGTH_SHORT).show();
@@ -77,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setStatusBarColor() {
+    }
+
+    private void isEmptyEmailAndPass(String emptyEmail, String emptyPass){
+        if(emptyEmail.isEmpty() || emptyPass == null || emptyPass.isEmpty()){
+            Toast.makeText(this, "Your Email or Password empty", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
