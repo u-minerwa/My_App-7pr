@@ -1,10 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pract_7</string>
-    <string name="email">Email</string>
-    <string name="my_app_7">My App 7</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="register">Register</string>
     <string name="sale">Sale</string>
     <string name="contactsText">Контакты</string>
     <string name="proNasText">Про Нас</string>

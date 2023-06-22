@@ -3,6 +3,7 @@ package com.example.pract_7;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
                                     Toast.makeText(MainActivity.this, "Welcome, User!", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent;
+                                    intent = new Intent(MainActivity.this, Courses.class);
+                                    startActivity(intent);
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
