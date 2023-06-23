@@ -20,6 +20,7 @@ public class Courses extends AppCompatActivity {
     CategoryAdapter categoryAdapter;
     static CourseAdapter courseAdapter;
     static List<CourseM> courseMList = new ArrayList<>();
+    static List<CourseM> fullCourseMList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class Courses extends AppCompatActivity {
         // courseMList.add(new CourseM(3, ""));
         // courseMList.add(new CourseM(4, ""));
 
+        fullCourseMList.addAll(courseMList);
+
         setCourseMRecycler(courseMList);
 
     }
@@ -68,12 +71,18 @@ public class Courses extends AppCompatActivity {
     }
 
     public static void showCoursesByCategory(int category){
+        courseMList.clear();
+        courseMList.addAll(fullCourseMList);
+
         List<CourseM> filterCourses = new ArrayList<>();
         for (CourseM c: courseMList){
             if(c.getCategory() == category){
-                filterCourses.addAll(c);
+                filterCourses.add(c);
             }
             courseMList.clear();
+            courseMList.addAll(filterCourses);
+
+            courseAdapter.notifyDataSetChanged();
         }
     }
 }
