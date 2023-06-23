@@ -34,8 +34,8 @@ public class Courses extends AppCompatActivity {
         setCategoryRecycler(categoryList);
 
         List<CourseM> courseMList = new ArrayList<>();
-        courseMList.add(new CourseM(1, "java_full_course_1"));
-        courseMList.add(new CourseM(2, "python_full_course_1"));
+        courseMList.add(new CourseM(1, "java_full_course_1", "Профессия Java\nразработчик", "26 июня", "начальный", "#424345", "Test"));
+        courseMList.add(new CourseM(2, "python_full_course_1", "Профессия Python\nразработчик", "5 сентября", "начальный", "#9FA52D", "Test"));
         // courseMList.add(new CourseM(3, ""));
         // courseMList.add(new CourseM(4, ""));
 

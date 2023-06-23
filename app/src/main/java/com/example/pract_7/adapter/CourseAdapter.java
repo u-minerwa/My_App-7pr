@@ -1,6 +1,9 @@
 package com.example.pract_7.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pract_7.CoursePage;
 import com.example.pract_7.R;
 import com.example.pract_7.model.CourseM;
 
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
-
     Context context;
     List<CourseM> courseMS;
 
@@ -34,10 +38,31 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CourseViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.courseBg.setCardBackgroundColor(Color.parseColor(courseMS.get(position).getColor()));
 
         int imageId = context.getResources().getIdentifier(courseMS.get(position).getImg(), "drawable", context.getPackageName());
         holder.courseImageFull.setImageResource(imageId);
+
+        holder.courseTitle.setText(courseMS.get(position).getTitle());
+        holder.courseDate.setText(courseMS.get(position).getDate());
+        holder.courseLevel.setText(courseMS.get(position).getLevel());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CoursePage.class);
+
+                intent.putExtra("courseBg", Color.parseColor(courseMS.get(position).getColor()));
+                intent.putExtra("courseImage", imageId);
+                intent.putExtra("courseTitle", courseMS.get(position).getTitle());
+                intent.putExtra("courseDate", courseMS.get(position).getDate());
+                intent.putExtra("courseLevel", courseMS.get(position).getLevel());
+                intent.putExtra("courseText", courseMS.get(position).getText());
+
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -47,7 +72,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     public static final class CourseViewHolder extends RecyclerView.ViewHolder {
 
-        LinearLayout courseBg;
+        CardView courseBg;
         ImageView courseImageFull;
         TextView courseTitle, courseDate, courseLevel;
 
@@ -55,6 +80,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             super(itemView);
 
             courseImageFull = itemView.findViewById(R.id.courseImageFull);
+            courseBg = itemView.findViewById(R.id.courseBg);
+            courseTitle = itemView.findViewById(R.id.courseTitle);
+            courseDate = itemView.findViewById(R.id.courseDate);
+            courseLevel = itemView.findViewById(R.id.courseLevel);
         }
     }
 }
