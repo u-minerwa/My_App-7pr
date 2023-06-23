@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.pract_7.adapter.CategoryAdapter;
 import com.example.pract_7.adapter.CourseAdapter;
@@ -22,10 +25,22 @@ public class Courses extends AppCompatActivity {
     static List<CourseM> courseMList = new ArrayList<>();
     static List<CourseM> fullCourseMList = new ArrayList<>();
 
+    ImageView img2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
+
+        img2 = findViewById(R.id.imageView2);
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                courseMList.clear();
+                courseMList.addAll(fullCourseMList);
+                courseAdapter.notifyDataSetChanged();
+            }
+        });
 
         List<Category> categoryList = new ArrayList<>();
         categoryList.add(new Category(1, "Курсы"));
@@ -70,6 +85,7 @@ public class Courses extends AppCompatActivity {
         categoryRecycler.setAdapter(categoryAdapter);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public static void showCoursesByCategory(int category){
         courseMList.clear();
         courseMList.addAll(fullCourseMList);
@@ -79,11 +95,11 @@ public class Courses extends AppCompatActivity {
             if(c.getCategory() == category){
                 filterCourses.add(c);
             }
-            courseMList.clear();
-            courseMList.addAll(filterCourses);
-
-            courseAdapter.notifyDataSetChanged();
         }
+        courseMList.clear();
+        courseMList.addAll(filterCourses);
+
+        courseAdapter.notifyDataSetChanged();
     }
 }
 

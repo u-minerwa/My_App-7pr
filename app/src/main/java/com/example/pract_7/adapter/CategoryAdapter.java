@@ -52,7 +52,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     public final static class CategoryViewHolder extends RecyclerView.ViewHolder{
-
         TextView categoryTitle;
 
         public CategoryViewHolder(@NonNull View itemView) {
