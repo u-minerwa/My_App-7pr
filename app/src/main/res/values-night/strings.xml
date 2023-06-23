@@ -10,4 +10,11 @@
     <string name="aaa">aaa</string>
     <string name="courses_rus">Курсы</string>
     <string name="java_course">java Course</string>
+    <string name="todo">TODO</string>
+    <string name="course_start_date">Старт обучения: </string>
+    <string name="course_level">Уровень: </string>
+
+    <string name="course_desc">Программа обучения Java рассчитана на новичков в данной сфере. За программу вы изучите построение
+        графических приложений под ПК, разработку веб сайтов на основе Java Spring Boot, изучите построение полноценных Android-приложений
+        и отлично изучите сам язык Java!</string>
 </resources>
