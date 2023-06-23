@@ -1,9 +1,12 @@
 package com.example.pract_7.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,14 +56,17 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             public void onClick(View view) {
                 Intent intent = new Intent(context, CoursePage.class);
 
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity)context,
+                        new Pair<View, String>(holder.courseImageFull, "courseImageFull"));
+
                 intent.putExtra("courseBg", Color.parseColor(courseMS.get(position).getColor()));
-                intent.putExtra("courseImage", imageId);
+                intent.putExtra("courseImageFull", imageId);
                 intent.putExtra("courseTitle", courseMS.get(position).getTitle());
                 intent.putExtra("courseDate", courseMS.get(position).getDate());
                 intent.putExtra("courseLevel", courseMS.get(position).getLevel());
                 intent.putExtra("courseText", courseMS.get(position).getText());
 
-                context.startActivity(intent);
+                context.startActivity(intent, options.toBundle());
             }
         });
     }

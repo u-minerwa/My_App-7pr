@@ -18,7 +18,8 @@ public class Courses extends AppCompatActivity {
 
     RecyclerView categoryRecycler, courseRecycler;
     CategoryAdapter categoryAdapter;
-    CourseAdapter courseAdapter;
+    static CourseAdapter courseAdapter;
+    static List<CourseM> courseMList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,14 @@ public class Courses extends AppCompatActivity {
 
         setCategoryRecycler(categoryList);
 
-        List<CourseM> courseMList = new ArrayList<>();
-        courseMList.add(new CourseM(1, "java_logo_2", "Профессия Java\nразработчик", "26 июня", "начальный", "#424345", "Test"));
-        courseMList.add(new CourseM(2, "python_logo_2", "Профессия Python\nразработчик", "5 сентября", "начальный", "#9FA52D", "Test"));
+        courseMList.add(new CourseM(1, "java_logo_2", "Профессия Java\nразработчик", "26 июня", "начальный", "#424345",
+                "Программа обучения Java рассчитана на новичков в данной сфере. За программу вы изучите построение\n" +
+                        "графических приложений под ПК, разработку веб сайтов на основе Java Spring Boot, изучите построение полноценных Android-приложений\n" +
+                        "и отлично изучите сам язык Java!", 2));
+        courseMList.add(new CourseM(2, "python_logo_2", "Профессия Python\nразработчик", "5 сентября", "начальный", "#9FA52D",
+                "Программа обучения Python рассчитана на новичков в данной сфере. За программу вы изучите построение\n" +
+                        "графического пользовательского интерфейса под ПК, разработку нейронных сетей, изучите построение полноценных приложений\n" +
+                        "и отлично изучите сам язык Python!", 4));
         // courseMList.add(new CourseM(3, ""));
         // courseMList.add(new CourseM(4, ""));
 
@@ -59,6 +65,16 @@ public class Courses extends AppCompatActivity {
 
         categoryAdapter = new CategoryAdapter(this, categoryList);
         categoryRecycler.setAdapter(categoryAdapter);
+    }
+
+    public static void showCoursesByCategory(int category){
+        List<CourseM> filterCourses = new ArrayList<>();
+        for (CourseM c: courseMList){
+            if(c.getCategory() == category){
+                filterCourses.addAll(c);
+            }
+            courseMList.clear();
+        }
     }
 }
 
